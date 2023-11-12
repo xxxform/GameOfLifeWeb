@@ -18,7 +18,8 @@ let cellWidth, cellHeight;
 
 
 const clear = clearButton.onclick = () => {
-    for (const td of field.getElementsByTagName('td')) td.classList.remove('active');
+    for (const td of aliveCells) td.classList.remove('active');
+    aliveCells.length = 0;
 }
 
 const scrollEnd = () => {
@@ -70,12 +71,17 @@ width.oninput = height.oninput = () => {
 field.onclick = event => {
     if (event.target.tagName !== 'TD') return;
     event.target.classList.toggle('active');
+    if (event.target.classList.contains('active')) aliveCells.push(event.target);
+    else aliveCells.splice(aliveCells.indexOf(event.target), 1);
 }
 
 randomGenerate.onclick = event => {
     clear();
     for (const td of field.getElementsByTagName('td')) {
-        if (Math.random() > .5) td.classList.add('active');
+        if (Math.random() > .5) {
+            td.classList.add('active');
+            aliveCells.push(td);
+        }
     }
 }
 
@@ -172,6 +178,5 @@ startButton.onclick = () => {
 
     time.disabled = true;
     startButton.textContent = 'Stop';
-    aliveCells = getAliveCells(field.getElementsByTagName('td'));
     intervalId = setInterval(tick, +time.value);
 }
