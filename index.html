@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script defer src="./index.js"></script>
+    </head>
+
+    <style>
+        body {
+            margin: 0;
+        }
+        table {
+            position: absolute;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+        table td {
+            box-shadow: 1px 1px black;
+            width: 20px;
+            height: 20px;
+            min-width: 20px;
+            aspect-ratio: 1/1;
+            display: none;
+        }
+        table tr {
+            display: none;
+            white-space: nowrap;
+        }
+        .active {
+            background: green;
+        }
+        .settings {
+            left: 0;
+            position: fixed;
+            opacity: .5;
+        }
+
+        .settings:hover {
+            opacity: 1;
+        }
+
+        #fieldWrapper {
+            margin: 0 auto;
+            resize: both;
+            width: 50vw;
+            height: 50vh;
+            overflow: scroll;
+        }
+
+        #fieldInnerWrapper {
+            overflow: hidden;
+            position: relative;
+        }
+        
+    </style>
+    
+    <div class="settings">
+        Width<input type="number" id="width" value="30"><br>
+        Height<input type="number" id="height" value="30"><br>
+        GenTime<input type="number" id="time" value="200"><br>
+        <button id="startButton">Start</button>
+        <button id="randomGenerate">RandomGenerate</button>
+        <button id="clearButton">Clear</button>
+    </div>
+    
+    <div id="fieldWrapper">
+        <div id="fieldInnerWrapper">
+            <table id="field"><tbody></tbody></table>
+        </div>
+    </div>
+</html>
